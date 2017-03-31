@@ -1,0 +1,28 @@
+<div class="container" ng-controller="fleetsCtrl">
+    <div ng-controller="fleetCtrl">
+        <ul class="collection with-header">
+            <li class="collection-header">
+                <h4>Fleet</h4></li>
+            <li class="collection-item" ng-repeat="item in fleet">
+                <div ng-click="clickevent(item.id)">{{item.name}}</div>
+            </li>
+        </ul>
+        <br>
+        <div ng-controller="fleetVehiculeCtrl">
+            <ul class="collection with-header">
+                <li class="collection-header">
+                    <h4>Vehicles</h4></li>
+                <li class="collection-item" ng-repeat="item in vehicles">
+                    <div>{{item.name}}</div>
+                </li>
+            </ul>
+        </div>
+        <div class="input-field col s12">
+                <input type="text" id="fleet" class="input-field col s12" ng-model="company.email_address">
+                <label class="active" for="fleet">Fleet</label>
+            </div>
+    </div>
+
+
+
+</div>

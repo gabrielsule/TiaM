@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://use.fontawesome.com/54019575cf.js"></script>
+    <link rel="stylesheet" href="css/vendor/materialize.css">
+    <link rel="stylesheet" href="css/asset/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> </head>
+
+<body ng-controller="companiesCtrl">
+    <header>
+        <nav>
+            <div class="nav-fixed"> <a href="#" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">JavaScript</a></li>
+                </ul>
+            </div>
+        </nav>
+        <ul id="slide-out" class="side-nav fixed">
+            <li>
+                <div class="logo"> <img class="background" src="img/logocarfleet.png"> </div>
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion" ng-repeat="item in list | filter:{id_companytype:1}">
+                    <li class="bold"><a class="collapsible-header waves-effect waves-teal">{{item.name}}</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li ng-repeat="company in list | filter:{id_company:item.id}"><a href="#/companies/{{company.id_company}}/company/{{company.id}}" class="waves-effect">{{company.name}}</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <ng-view></ng-view>
+    </main>
+    <footer></footer>
+    <script src="js/vendor/jquery-2.2.3.min.js"></script>
+    <script src="js/vendor/lodash.min.js"></script>
+    <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/angular-route.min.js"></script>
+    <script src="js/vendor/materialize.js"></script>
+    <script src="js/vendor/angular-materialize.min.js"></script>
+    <script src="js/asset/app.js"></script>
+    <script src="js/asset/factoryPass.js"></script>
+    <script src="js/asset/factoryCompany.js"></script>
+    <script src="js/asset/factoryFleet.js"></script>
+    <script src="js/asset/factoryVehicle.js"></script>
+    <script src="js/asset/ctrlCompany.js"></script>
+    <script src="js/asset/ctrlFleet.js"></script>
+    <script>
+        $(document).ready(function () {
+            //sidenav
+            $('.button-collapse').sideNav();
+            //collapse
+            $(document).on('click', '.collapsible-header', function () {
+                $(this).next().slideToggle('fast');
+                if ($(this).parent().hasClass('open')) {
+                    $(this).parent().removeClass('open');
+                }
+                else {
+                    $(this).parent().addClass('open');
+                }
+            });
+            //tooltip
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            });
+        });
+    </script>
+</body>
+
+</html>
